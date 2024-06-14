@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:57:37 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/13 16:46:47 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/14 16:53:41 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,54 +70,45 @@ int	check_char(t_sl *sl)
 	return (0);
 }
 
-int	check_p_e(t_sl *sl)
+int	check_map_params(t_sl *sl)
 {
-	int	nbplayer;
-	int	nbexit;
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	nbplayer = 0;
-	nbexit = 0;
-	i = -1;
-	while (sl->map[++i])
+	y = -1;
+	while (sl->map[++y])
 	{
-		j = -1;
-		while (sl->map[i][++j])
+		x = -1;
+		while (sl->map[y][++x])
 		{
-			if (sl->map[i][j] == 'P')
-				nbplayer++;
-			if (sl->map[i][j] == 'E')
-				nbexit++;
+			if (sl->map[y][x] == 'P')
+			{
+				sl->nbplayer++;
+				sl->player.x = x;
+				sl->player.y = y;
+			}	
+			if (sl->map[y][x] == 'E')
+				sl->nbexit++;
+			if (sl->map[y][x] == 'C')
+				sl->nbitem++;
 		}
 	}
-	if (nbplayer > 1 || nbplayer == 0)
-		return (ft_putstr_fd(ERROR_PLAYER, 2), freetab(sl->map), 1);
-	if (nbexit > 1 || nbexit == 0)
-		return (ft_putstr_fd(ERROR_EXIT, 2), freetab(sl->map), 1);
+	if ((params_not_valid(sl)) == 1)
+		return (1);
 	return (0);
 }
 
-/*
-1 = wall
-0 = espaces vides
-E = exit
-C = item to collect
-P = player
-
-OK si ma map est rectangle 
-OK si ma map ne contient pas de lignes vides
-OK la premiere ligne ne doit etre que des 1
-OK la derniere ligne ne doit etre que des 1
-OK le premier char de chaque ligne doit etre un 1
-OK le dernier char de chaque ligne doit etre un 1
-
-a partir de la ligne 2 jusqu'a l'avant derniere ligne je peux trouver : 
-plusieurs 0, plusieurs C, un seul P, un seul E
-
-si le P a deja ete trouve precedemment, je dois quitter
-si le E a deja ete trouve precedemment, je dois quitter
-
-verifier s'il y a un chemin valide 
-retourner "Error\n" suivi d’un message d’erreur explicite de votre choix
-*/
+int params_not_valid(t_sl *sl)
+{	
+	if (sl->nbplayer > 1)
+		return (ft_putstr_fd(ERROR_PLAYER, 2), freetab(sl->map), 1);
+	if (sl->nbplayer == 0)
+		return (ft_putstr_fd(NO_PLAYER, 2), freetab(sl->map), 1);
+	if (sl->nbexit > 1)
+		return (ft_putstr_fd(ERROR_EXIT, 2), freetab(sl->map), 1);
+	if (sl->nbexit == 0)
+		return (ft_putstr_fd(NO_EXIT, 2), freetab(sl->map), 1);
+	if (sl->nbitem < 1)
+		return (ft_putstr_fd(ERROR_ITEM, 2), freetab(sl->map), 1);
+	return (0);
+}
