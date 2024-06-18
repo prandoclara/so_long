@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 21:47:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/14 16:44:35 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:18:29 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,15 @@ int	init_maptab(t_sl *sl, char *file)
 	i = 0;
 	sl->map = malloc(sizeof(char *) * (sl->nbline + 1));
 	if (!sl->map)
-		return (freetab(sl->map), 1);
+		return (freetab(sl->map, sl->height_map), 1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (freetab(sl->map), 1);
+		return (freetab(sl->map, sl->height_map), 1);
 	while (i < sl->nbline)
 	{
 		sl->map[i] = get_next_line(fd);
 		if (!sl->map[i])
-			return (freetab(sl->map), close(fd), 1);
+			return (freetab(sl->map, sl->height_map), close(fd), 1);
 		i++;
 	}
 	sl->map[i] = NULL;
@@ -71,12 +71,15 @@ int	init_maptab(t_sl *sl, char *file)
 int	is_valid_map(t_sl *sl)
 {
 	if (is_rectangle(sl) == 1)
-		return (freetab(sl->map), 1);
+		return (freetab(sl->map, sl->height_map), 1);
 	if (check_wall(sl) == 1)
 		return (1);
 	if (check_char(sl) == 1)
 		return (1);
 	if (check_map_params(sl) == 1)
 		return (1);
+	print_map(sl->map, sl->height_map, sl->width_map);
+	if (is_valid_path(sl) == 1)
+		return (freetab(sl->map, sl->height_map), 1);
 	return (0);
 }

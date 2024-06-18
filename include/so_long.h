@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:44:29 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/14 16:41:35 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:42:44 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
-
-typedef struct s_img
-{
-	void * xpm_ptr;
-	int type;
-	int x;
-	int y;
-} t_img;
-
-typedef struct s_position
-{
-	int	x;
-	int	y;
-} t_position;
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 typedef struct s_sl
 {
@@ -54,22 +42,25 @@ typedef struct s_sl
 	int		nbitem;
 
 	/******** PLAYER ********/
-	t_position 	player;
-	t_img		wall;
-	t_img		floor;
-	t_img		item;
-	t_img		exit;
-	t_img		player_front;
-	t_img		player_left;
-	t_img		player_right;
-	t_img		player_back;
-	
+	void	*player;
+	int		y_player;
+	int		x_player;
+	int		mov;
+
+	/********* IMG *********/
+	void	*wall;
+	void	*floor;
+	void	*item;
+	void	*exit;
+	int		player_sprite;
+	int		width_img;
+	int		height_img;
 } t_sl;
 
 /********** UTILS.C **********/
 int		is_ber_file(char *s);
 int		is_directory(char *s);
-void	freetab(char **tab);
+void	freetab(char **tab, int size);
 int 	ft_strlen_no_newline(const char *str);
 int		is_valid_char(char c);
 
@@ -88,7 +79,17 @@ int 	params_not_valid(t_sl *sl);
 
 /********** INIT_GAME.C **********/
 int	init_mlx(t_sl *sl);
-int	init_sprites(t_sl *sl);
-int new_sprite(void *mlx, char *path, int type, t_img *img);
+int	load_images(t_sl *sl);
+int render_map(t_sl *sl);
+void free_resources(t_sl *sl);
+int key_hook(int keycode, t_sl *sl);
+int exit_game(t_sl *sl);
+int close_window(t_sl *sl);
+void	player_mov(t_sl *sl, int new_y, int new_x, int player_mov);
+int	victory(t_sl *sl);
+
+int is_valid_path(t_sl *sl);
+int	flood_fill(t_sl *sl, int x, int y, char **visited, int nbitem);
+void print_map(char **map, int height, int width);
 
 #endif

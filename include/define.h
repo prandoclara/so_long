@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:47:07 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/14 15:32:48 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:05:31 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,24 @@
 # define ERROR_ITEM "Error\nYou need at least one item to collect in the map.\n"
 # define ERROR_MLXPTR "Error\nCan't find mlx pointer.\n"
 # define ERROR_WINPTR "Error\nCouldn't create the Window.\n"
+# define ERROR_XPM_PTR "Error\nCouldn't find a sprite. Does it exist ?\n"
+# define ERROR_FF "Error\nError Flood Fill"
+# define ERROR_NO_PATH "Error\nNo valid path.\n"
 
 # define WALL '1'
 # define ESP '0'
 # define EXIT 'E'
 # define ITEM 'C'
 # define PLAYER 'P'
+# define VU '2'
+
+# define FRONT				1
+# define LEFT				2
+# define RIGHT				3
+# define BACK				4
 
 # define WALL_XPM "./assets/wall.xpm"
-# define FLOOR_XPM "./assets/floor.xpm"
+# define FLOOR_XPM "./assets/esp.xpm"
 # define ITEM_XPM "./assets/item.xpm"
 # define PLAYER_FRONT_XPM "./assets/player.xpm"
 # define PLAYER_LEFT_XPM "./assets/playerleft.xpm"

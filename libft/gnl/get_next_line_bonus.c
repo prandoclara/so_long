@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 11:06:31 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/05 21:29:52 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/18 10:14:37 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static char	*read_to_str(int fd, char *str)
 			return (NULL);
 		}
 		buf[nbytes] = '\0';
-		str = ft_strjoin_gnl(str, buf);
+		str = ft_str_join_gnl(str, buf);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
