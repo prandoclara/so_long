@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 20:55:53 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/18 12:58:25 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:07:41 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	is_directory(char *s)
 	return (0);
 }
 
-void freetab(char **tab, int size)
+void	freetab(char **tab, int size)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < size)
-    {
-        free(tab[i]);
-        i++;
-    }
-    free(tab);
+	i = 0;
+	while (i < size)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
 
 int	ft_strlen_no_newline(const char *s)

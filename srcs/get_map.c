@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 21:47:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 10:20:53 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:36:05 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	init_maptab(t_sl *sl, char *file)
 int	is_valid_map(t_sl *sl)
 {
 	if (is_rectangle(sl) == 1)
-		return (freetab(sl->map, sl->height_map), 1);
+		return (1);
 	if (check_wall(sl) == 1)
 		return (1);
 	if (check_char(sl) == 1)
