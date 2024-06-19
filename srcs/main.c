@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:50:51 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/18 14:46:46 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:31:44 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ int	main(int ac, char **av)
 			return (1);
 		if (is_valid_map(&sl) == 1)
 			return (1);
+		if (is_valid_path(&sl) == 1)
+		{
+			ft_putstr_fd(ERROR_NO_PATH, 2);
+			freetab(sl.map, sl.height_map);
+        	return (1);
+		}
 		if (init_mlx(&sl) == 1)
 			return (1);
 		if (load_images(&sl) == 1)

@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 12:57:37 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/18 16:59:11 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:35:35 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,35 +113,33 @@ int params_not_valid(t_sl *sl)
 	return (0);
 }
 
-int	flood_fill(t_sl *sl, int x, int y, char **visited, int nbitem)
+int flood_fill(t_sl *sl, int x, int y, char **visited, int nbitem)
 {
-	int i;
+    int i;
 
-	i = 0;
-	if (x < 0 || x >= sl->height_map || y < 0 || y >= sl->width_map)
-		return (printf("ha\n"), 1);
-	if (sl->map[x][y] == WALL || visited[x][y] == 'V')
-		return (printf("heho\n"), 1);
-	visited[x][y] = 'V';
-	if (sl->map[x][y] == ITEM)
+    i = 0;
+    if (x < 0 || x >= sl->height_map || y < 0 || y >= sl->width_map)
+        return (1);
+    if (sl->map[x][y] == WALL || visited[x][y] == 'V')
 	{
-		nbitem++;
+        return (printf("%d\n", nbitem), 1);
+	}
+	visited[x][y] = 'V';
+    if (sl->map[x][y] == ITEM)
+	{
+        nbitem++;
 	}
 	if (sl->map[x][y] == EXIT && nbitem == sl->nbitem)
 	{
-		printf("la\n");
-		return (0);
+        return (0);
 	}
-	printf("%d\n", nbitem);
-	if (!flood_fill(sl, x + 1, y, visited, nbitem))
-		return (0);
-	if (!flood_fill(sl, x - 1, y, visited, nbitem))
-		return (0);
-	if (!flood_fill(sl, x, y + 1, visited, nbitem))
-		return (0);
-	if (!flood_fill(sl, x, y - 1, visited, nbitem))
-		return (0);
-	return (printf("allo\n"), 1);
+    nbitem = flood_fill(sl, x + 1, y, visited, nbitem);
+	nbitem = flood_fill(sl, x - 1, y, visited, nbitem);
+    nbitem = flood_fill(sl, x, y + 1, visited, nbitem);
+    nbitem = flood_fill(sl, x, y - 1, visited, nbitem);
+	if (nbitem == 0)
+		return (1);
+    return (1);
 }
 
 int is_valid_path(t_sl *sl)
@@ -174,6 +172,7 @@ int is_valid_path(t_sl *sl)
 	res = flood_fill(sl, sl->x_player, sl->y_player, visited, 0);
 	printf("\n");
 	print_map(visited, sl->height_map, sl->width_map);
+	printf("flood fill res = %d\n", res);
 	freetab(visited, i);
 	return(res);
 }

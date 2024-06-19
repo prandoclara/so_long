@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 21:47:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/18 15:18:29 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/19 10:20:53 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,5 @@ int	is_valid_map(t_sl *sl)
 		return (1);
 	if (check_map_params(sl) == 1)
 		return (1);
-	print_map(sl->map, sl->height_map, sl->width_map);
-	if (is_valid_path(sl) == 1)
-		return (freetab(sl->map, sl->height_map), 1);
 	return (0);
 }
