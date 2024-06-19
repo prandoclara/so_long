@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:55:07 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 15:10:22 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:36:19 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	player_mov(t_sl *sl, int new_y, int new_x, int player_mov)
 		sl->y_player = new_y;
 		sl->map[new_y][new_x] = PLAYER;
 		sl->mov++;
+		ft_printf("Move : %d\n", sl->mov);
 		render_map(sl, -1, -1);
 	}
 }

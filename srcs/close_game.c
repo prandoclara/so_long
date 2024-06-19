@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:36:19 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 14:39:36 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:40:30 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	free_resources(t_sl *sl)
 
 int	victory(t_sl *sl)
 {
-	ft_printf("\n\nNombre total de mouvements : %d\n\n", sl->mov);
-	ft_putstr_fd("*****************\n", 1);
-	ft_putstr_fd("*   YOU WIN !   *\n", 1);
-	ft_putstr_fd("*****************\n", 1);
-	ft_putstr_fd("\n\n", 1);
+	ft_printf("\nNombre total de mouvements : %d\n\n", sl->mov);
+	ft_printf("*****************\n");
+	ft_printf("*   YOU WIN !   *\n");
+	ft_printf("*****************\n");
+	ft_printf("\n");
 	exit_game(sl);
 	return (0);
 }
