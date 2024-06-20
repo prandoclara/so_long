@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:47:07 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 16:20:02 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:54:55 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,9 @@ parameter is a directory.\n"
 # define BACK				4
 
 # define WALL_XPM "./assets/wall.xpm"
-# define FLOOR_XPM "./assets/esp.xpm"
-# define ITEM_XPM "./assets/item.xpm"
-# define PLAYER_FRONT_XPM "./assets/player.xpm"
-# define PLAYER_LEFT_XPM "./assets/playerleft.xpm"
-# define PLAYER_RIGHT_XPM "./assets/playerright.xpm"	
-# define PLAYER_BACK_XPM "./assets/playerback.xpm"
-# define EXIT_XPM "./assets/exit.xpm"
+# define FLOOR_XPM "./assets/a.xpm"
+# define ITEM_XPM "./assets/key.xpm"
+# define PLAYER_FRONT_XPM "./assets/ducky.xpm"
+# define EXIT_XPM "./assets/c.xpm"
 
 #endif

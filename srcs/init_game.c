@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:55:07 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 16:36:19 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:52:06 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ int	init_mlx(t_sl *sl)
 
 int	load_images(t_sl *sl)
 {
+	sl->floor = mlx_xpm_file_to_image(sl->mlx_ptr, FLOOR_XPM,
+			&sl->width_img, &sl->height_img);
 	sl->wall = mlx_xpm_file_to_image(sl->mlx_ptr, WALL_XPM,
 			&sl->width_img, &sl->height_img);
 	if (!sl->wall)
 		return (free_resources(sl), 1);
-	sl->floor = mlx_xpm_file_to_image(sl->mlx_ptr, FLOOR_XPM,
-			&sl->width_img, &sl->height_img);
 	if (!sl->floor)
 		return (free_resources(sl), 1);
 	sl->exit = mlx_xpm_file_to_image(sl->mlx_ptr, EXIT_XPM,
@@ -60,18 +60,20 @@ int	load_images(t_sl *sl)
 
 int	render_map(t_sl *sl, int y, int x)
 {
+	mlx_clear_window(sl->mlx_ptr, sl->win_ptr);
+	
 	y = -1;
 	while (++y < sl->height_map)
 	{
 		x = -1;
 		while (++x < sl->width_map)
 		{
-			if (sl->map[y][x] == '1')
-				mlx_put_image_to_window(sl->mlx_ptr, sl->win_ptr,
-					sl->wall, x * 32, y * 32);
 			if (sl->map[y][x] == '0')
 				mlx_put_image_to_window(sl->mlx_ptr, sl->win_ptr,
 					sl->floor, x * 32, y * 32);
+			if (sl->map[y][x] == '1')
+				mlx_put_image_to_window(sl->mlx_ptr, sl->win_ptr,
+					sl->wall, x * 32, y * 32);
 			if (sl->map[y][x] == 'P')
 				mlx_put_image_to_window(sl->mlx_ptr, sl->win_ptr,
 					sl->player, x * 32, y * 32);
