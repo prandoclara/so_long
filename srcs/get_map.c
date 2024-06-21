@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 21:47:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 15:36:05 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:49:13 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,23 @@ int	init_maptab(t_sl *sl, char *file)
 	return (0);
 }
 
+int	check_map_size(t_sl *sl)
+{
+	if ((sl->width_map * 32) > WIDTH_MAP_MAX
+		|| (sl->height_map * 32) > HEIGHT_MAP_MAX)
+	{
+		ft_putstr_fd(ERROR_TOO_BIG, 2);
+		freetab(sl->map, sl->height_map);
+		return (1);
+	}
+	return (0);
+}
+
 int	is_valid_map(t_sl *sl)
 {
 	if (is_rectangle(sl) == 1)
+		return (1);
+	if (check_map_size(sl) == 1)
 		return (1);
 	if (check_wall(sl) == 1)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 19:44:29 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 15:12:10 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:44:53 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ void	freetab(char **tab, int size);
 int		ft_strlen_no_newline(const char *str);
 int		is_valid_char(char c);
 
-/********** MAP.C **********/
+/********** GET_MAP.C **********/
 int		open_map(t_sl *sl, char *file);
 int		read_map(t_sl *sl, int fd);
 int		init_maptab(t_sl *sl, char *file);
+int		check_map_size(t_sl *sl);
 int		is_valid_map(t_sl *sl);
 
 /********** CHECK_MAP.C **********/
@@ -73,19 +74,20 @@ int		check_char(t_sl *sl);
 int		check_map_params(t_sl *sl);
 int		params_not_valid(t_sl *sl);
 
+/********** FLOOD_FILL.C **********/
+int		flood_fill(t_sl *sl, int x, int y, char **visited);
+int		is_valid_path(t_sl *sl);
+
 /********** INIT_GAME.C **********/
 int		init_mlx(t_sl *sl);
 int		load_images(t_sl *sl);
 int		render_map(t_sl *sl, int y, int x);
-void	free_resources(t_sl *sl);
 int		key_hook(int keycode, t_sl *sl);
-int		exit_game(t_sl *sl);
-int		close_window(t_sl *sl);
 void	player_mov(t_sl *sl, int new_y, int new_x, int player_mov);
-int		victory(t_sl *sl);
 
-int		is_valid_path(t_sl *sl);
-int		flood_fill(t_sl *sl, int x, int y, char **visited);
-void	print_map(char **map, int height, int width);
+/********** CLOSE_GAME.C **********/
+void	free_resources(t_sl *sl);
+int		exit_game(t_sl *sl);
+int		victory(t_sl *sl);
 
 #endif

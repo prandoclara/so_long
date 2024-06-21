@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:36:28 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 15:48:46 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:49:31 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	flood_fill(t_sl *sl, int x, int y, char **visited)
 {
-	if (x < 0 || x >= sl->height_map || y < 0 || y >= sl->width_map)
+	if (y < 0 || y >= sl->height_map || x < 0 || x >= sl->width_map)
 		return (1);
-	if (sl->map[x][y] == WALL || visited[x][y] == 'V')
+	if (sl->map[y][x] == WALL || visited[y][x] == 'V')
 		return (1);
-	if (sl->map[x][y] == EXIT)
+	if (sl->map[y][x] == EXIT)
 		return (0);
-	visited[x][y] = 'V';
+	visited[y][x] = 'V';
 	if (flood_fill(sl, x + 1, y, visited) == 0)
 		return (0);
 	if (flood_fill(sl, x - 1, y, visited) == 0)

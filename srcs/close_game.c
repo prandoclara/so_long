@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 14:36:19 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/19 16:40:30 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/21 14:47:13 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ int	victory(t_sl *sl)
 int	exit_game(t_sl *sl)
 {
 	free_resources(sl);
-	exit(1);
+	exit(0);
 	return (0);
 }

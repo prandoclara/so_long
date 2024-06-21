@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 10:47:07 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/20 15:54:55 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/21 15:39:59 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define IMG_HEIGHT			32
 # define IMG_WIDTH			32
+# define WIDTH_MAP_MAX		1920
+# define HEIGHT_MAP_MAX		1080
 
 /********** MESSAGES D'ERREURS **********/
 # define ERROR_FORMAT "Error\nCan't open file. The format is not supported.\n"
@@ -36,6 +38,7 @@ parameter is a directory.\n"
 # define ERROR_XPM_PTR "Error\nCouldn't find a sprite. Does it exist ?\n"
 # define ERROR_FF "Error\nError Flood Fill"
 # define ERROR_NO_PATH "Error\nNo valid path.\n"
+# define ERROR_TOO_BIG "Error\nThe Map is too big.\n"
 
 # define WALL '1'
 # define ESP '0'
