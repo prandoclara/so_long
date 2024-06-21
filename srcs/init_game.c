@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:55:07 by claprand          #+#    #+#             */
-/*   Updated: 2024/06/20 13:52:06 by claprand         ###   ########.fr       */
+/*   Updated: 2024/06/21 10:43:25 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	load_images(t_sl *sl)
 {
 	sl->floor = mlx_xpm_file_to_image(sl->mlx_ptr, FLOOR_XPM,
 			&sl->width_img, &sl->height_img);
+	if (!sl->floor)
+		return (free_resources(sl), 1);
 	sl->wall = mlx_xpm_file_to_image(sl->mlx_ptr, WALL_XPM,
 			&sl->width_img, &sl->height_img);
 	if (!sl->wall)
-		return (free_resources(sl), 1);
-	if (!sl->floor)
 		return (free_resources(sl), 1);
 	sl->exit = mlx_xpm_file_to_image(sl->mlx_ptr, EXIT_XPM,
 			&sl->width_img, &sl->height_img);
@@ -60,8 +60,6 @@ int	load_images(t_sl *sl)
 
 int	render_map(t_sl *sl, int y, int x)
 {
-	mlx_clear_window(sl->mlx_ptr, sl->win_ptr);
-	
 	y = -1;
 	while (++y < sl->height_map)
 	{
